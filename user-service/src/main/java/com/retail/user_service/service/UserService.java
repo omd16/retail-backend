@@ -13,8 +13,6 @@ import com.retail.user_service.util.JwtUtility;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Service

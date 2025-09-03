@@ -1,10 +1,6 @@
 package com.retail.user_service.service;
 
 import com.retail.user_service.dto.common.UserAddress;
-import com.retail.user_service.dto.request.LoginRequest;
-import com.retail.user_service.dto.response.LoginResponse;
-import com.retail.user_service.exception.CredentialNotValidException;
-import com.retail.user_service.exception.NotFoundException;
 import com.retail.user_service.mapper.UserAddressMapper;
 import com.retail.user_service.repository.UserAddressRepository;
 import com.retail.user_service.repository.UserRepository;
