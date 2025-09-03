@@ -1,7 +1,5 @@
 package com.retail.user_service.mapper;
 
-import com.retail.user_service.dto.request.UserRequest;
-import com.retail.user_service.dto.response.UserResponse;
 import com.retail.user_service.entity.User;
 import com.retail.user_service.entity.UserAddress;
 import org.mapstruct.*;
