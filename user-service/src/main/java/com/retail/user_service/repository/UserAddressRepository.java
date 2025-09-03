@@ -11,5 +11,5 @@ import java.util.UUID;
 @Repository
 public interface UserAddressRepository extends JpaRepository<UserAddress, UUID> {
 
-    List<UserAddress> findByUserId(UUID userId);
+  List<UserAddress> findByUserId(UUID userId);
 }
