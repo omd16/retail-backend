@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 
 public abstract class AuditableDto<U> {
 
-    protected U createdBy;
+  protected U createdBy;
 
-    protected LocalDateTime createdOn;
+  protected LocalDateTime createdOn;
 
-    protected U updatedBy;
+  protected U updatedBy;
 
-    protected LocalDateTime updatedOn;
+  protected LocalDateTime updatedOn;
 }

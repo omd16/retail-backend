@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 public class CartResponse {
 
-    private final UUID id;
+  private final UUID id;
 
-    private final List<Cart> items;
+  private final List<Cart> items;
 }

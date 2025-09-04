@@ -16,21 +16,20 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cart_item")
-public class CartItem extends Auditable<String>{
+public class CartItem extends Auditable<String> {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id", nullable = false, updatable = false)
-    private UUID id;
+  @Id
+  @GeneratedValue
+  @Column(name = "id", nullable = false, updatable = false)
+  private UUID id;
 
-    @Column(name = "product_id")
-    private UUID productId;
+  @Column(name = "product_id")
+  private UUID productId;
 
-    @Column(name = "quantity")
-    private Integer quantity ;
+  @Column(name = "quantity")
+  private Integer quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
-
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "cart_id", nullable = false)
+  private Cart cart;
 }
