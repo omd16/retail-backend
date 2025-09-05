@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategorySectionItemRepository extends JpaRepository<CategorySectionItem, Long> {
-}
+public interface CategorySectionItemRepository extends JpaRepository<CategorySectionItem, Long> {}

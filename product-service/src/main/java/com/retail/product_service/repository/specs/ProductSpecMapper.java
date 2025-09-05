@@ -2,12 +2,11 @@ package com.retail.product_service.repository.specs;
 
 import com.retail.product_service.dto.common.ProductSearchParameter;
 import com.retail.product_service.entity.Product;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ProductSpecMapper {

@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategorySectionItemResponseDTO {
-    private Long id;
-    private String title;
-    private String iconUrl;
-    private CategoryDto category;
+  private Long id;
+  private String title;
+  private String iconUrl;
+  private CategoryDto category;
 }

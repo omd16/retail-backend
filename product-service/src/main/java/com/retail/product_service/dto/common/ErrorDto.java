@@ -9,9 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 public class ErrorDto {
 
-    private String code;
+  private String code;
 
-    private String message;
+  private String message;
 
-    private String details;
+  private String details;
 }

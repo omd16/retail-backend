@@ -8,14 +8,12 @@ import com.retail.product_service.mapper.CategorySectionMapper;
 import com.retail.product_service.mapper.context.CategorySectionMapperContext;
 import com.retail.product_service.repository.CategoryRepository;
 import com.retail.product_service.repository.CategorySectionRepository;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Service
 @RequiredArgsConstructor

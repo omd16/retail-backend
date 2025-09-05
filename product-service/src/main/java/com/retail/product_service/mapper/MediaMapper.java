@@ -9,16 +9,17 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring", uses = {JsonNullableMappingStrategy.class})
+@Mapper(
+    componentModel = "spring",
+    uses = {JsonNullableMappingStrategy.class})
 public interface MediaMapper {
 
-    ProductMediaDto map(ProductMedia category);
+  ProductMediaDto map(ProductMedia category);
 
-    ProductMedia map(ProductMediaDto dto);
+  ProductMedia map(ProductMediaDto dto);
 
-    @Mapping(target = "id", ignore = true)
-    ProductMedia toEntity(ProductMediaDto dto, Product product);
+  @Mapping(target = "id", ignore = true)
+  ProductMedia toEntity(ProductMediaDto dto, Product product);
 
-
-    ProductMedia patch(@MappingTarget ProductMedia productMedia, ProductMediaDto dto);
+  ProductMedia patch(@MappingTarget ProductMedia productMedia, ProductMediaDto dto);
 }

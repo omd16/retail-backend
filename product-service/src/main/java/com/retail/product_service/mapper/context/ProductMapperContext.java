@@ -7,20 +7,19 @@ import org.mapstruct.MappingTarget;
 
 public class ProductMapperContext {
 
-    private Product product;
+  private Product product;
 
-    @BeforeMapping
-    public void setProduct(@MappingTarget Product product){
-        this.product = product;
-    }
+  @AfterMapping
+  public void addProduct(@MappingTarget Product product) {
+    product.getMedia().forEach(media -> media.setProduct(this.product));
+  }
 
-    @AfterMapping
-    public void addProduct(@MappingTarget Product product){
-        product.getMedia().forEach(media -> media.setProduct(this.product));
-    }
+  public Product getProduct() {
+    return this.product;
+  }
 
-    public Product getProduct(){
-        return this.product;
-    }
-
+  @BeforeMapping
+  public void setProduct(@MappingTarget Product product) {
+    this.product = product;
+  }
 }

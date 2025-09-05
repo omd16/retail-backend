@@ -7,10 +7,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class ProductSpecification {
 
-    public static Specification<Product> category(String name) {
-        return (root, query, cb) -> {
-            Join<Product, Category> categoryJoin = root.join("categories");
-            return cb.equal(categoryJoin.get("urlSlug"), name);
-        };
-    }
+  public static Specification<Product> category(String name) {
+    return (root, query, cb) -> {
+      Join<Product, Category> categoryJoin = root.join("categories");
+      return cb.equal(categoryJoin.get("urlSlug"), name);
+    };
+  }
 }
