@@ -1,5 +1,5 @@
 spring:
-  application-name: product-service
+  application-name: order-service
   datasource:
     url: jdbc:postgresql://localhost:5430/order
     username: retailuser
