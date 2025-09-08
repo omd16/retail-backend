@@ -1,0 +1,52 @@
+spring:
+  application:
+  name: retail-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8010
+          predicates:
+            - Path=/auth/signup
+          filters:
+            - RewritePath=/auth/signup, /v1/user
+        - id: user-service
+          uri: http://localhost:8010
+          predicates:
+            - Path=/v1/user/**
+          filters:
+            - name: RoleFilter
+              args:
+                roles:
+        - id: product-service
+          uri: http://localhost:8020
+          predicates:
+            - Path=/api/v1/product/**
+
+server:
+  port: 8000
+
+client:
+  user-service:
+    baseUrl: "http://localhost:8010/v1"
+    login: "/user/token"
+app:
+  jwt:
+    secret: "abcdefghij12345678900987654321oa"
+    expiration: 60000
+    publicPaths:
+      - method: GET
+        path: "/api/v1/product/sections"
+      - method: POST
+        path: "/auth/login"
+      - method: POST
+        path: "/auth/signup"
+      - method: POST
+        path: "/validate"
+      - method: GET
+        path: "/api/v1/product"
+
+  allowed-cross-origin:
+    - "http://localhost:5173"
+    - "*"
