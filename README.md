@@ -1,2 +1,14 @@
-# enterprise-retail-site
-A full-stack retail e-commerce platform built with Spring Boot (backend microservices) and React (frontend), designed with enterprise-grade architecture. It includes features like user authentication(JWT), order processing, and inventory handling, support for Docker, Kubernetes, Kafka messaging, and monitoring tools for scalability and reliability.
+#  Retail Microservices Project
+
+This repository is a **monorepo** containing multiple microservices that together form a retail e-commerce application.  
+It is designed to demonstrate **enterprise-level architecture** with modular microservices.
+
+---
+
+##  Microservices in this Repository
+
+- **cart-service** – Manages shopping cart operations (add/remove items, cart state).
+- **order-service** – Handles order placement, tracking, and order history.
+- **product-service** – Manages products, categories, pricing, and stock.
+- **user-service** – Handles authentication, profiles, and user management.
+- **retail-gateway** – API Gateway (entry point for all requests, routing to services, autherization and authentication).
