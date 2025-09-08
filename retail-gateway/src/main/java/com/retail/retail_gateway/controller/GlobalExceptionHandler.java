@@ -10,9 +10,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(LoginException.class)
-    public ResponseEntity<Map<String, String>> handleCustomException(LoginException ex) {
-        return ResponseEntity.status(ex.getStatus())
-                .body(Map.of("message", ex.getMessage()));
-    }
+  @ExceptionHandler(LoginException.class)
+  public ResponseEntity<Map<String, String>> handleCustomException(LoginException ex) {
+    return ResponseEntity.status(ex.getStatus()).body(Map.of("message", ex.getMessage()));
+  }
 }

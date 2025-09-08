@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class UserServiceProps {
 
-    private String baseUrl;
+  private String baseUrl;
 
-    private String login;
+  private String login;
 }

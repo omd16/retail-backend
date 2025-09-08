@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class PublicPath {
-    private String method;
-    private String path;
+  private String method;
+  private String path;
 }

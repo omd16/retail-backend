@@ -2,18 +2,16 @@ package com.retail.retail_gateway.config;
 
 import com.retail.retail_gateway.util.JwtUtil;
 import io.jsonwebtoken.Claims;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.*;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class RoleFilter extends AbstractGatewayFilterFactory<RoleFilter.Config> {
@@ -23,6 +21,20 @@ public class RoleFilter extends AbstractGatewayFilterFactory<RoleFilter.Config> 
     public RoleFilter(JwtUtil jwtUtil) {
         super(Config.class);
         this.jwtUtil = jwtUtil;
+    }
+
+    private static boolean checkRole(Claims claims, List<String> allowedRoles) {
+        if(allowedRoles.isEmpty()){
+            return true;
+        }
+        var claimRoles = claims.get("roles");
+        List<String> roles = new ArrayList<>();
+        if(claimRoles instanceof List<?> roleList){
+            for (Object item : roleList){
+                roles.add((String) item);
+            }
+        }
+        return roles.stream().anyMatch(allowedRoles::contains);
     }
 
     @Override
@@ -43,20 +55,6 @@ public class RoleFilter extends AbstractGatewayFilterFactory<RoleFilter.Config> 
 
             return unauthorized(exchange);
         };
-    }
-
-    private static boolean checkRole(Claims claims, List<String> allowedRoles) {
-        if(allowedRoles.isEmpty()){
-            return true;
-        }
-        var claimRoles = claims.get("roles");
-        List<String> roles = new ArrayList<>();
-        if(claimRoles instanceof List<?> roleList){
-            for (Object item : roleList){
-                roles.add((String) item);
-            }
-        }
-        return roles.stream().anyMatch(allowedRoles::contains);
     }
 
     private String extractTokenFromHeaderOrCookie(ServerWebExchange exchange) {

@@ -13,25 +13,37 @@ import reactor.core.publisher.Mono;
 @Component
 public class UserServiceClient {
 
-    private final UserServiceProps userServiceProps;
-    private final WebClient webClient;
+  private final UserServiceProps userServiceProps;
+  private final WebClient webClient;
 
-    public UserServiceClient(UserServiceProps userServiceProps, WebClient.Builder webClientbuilder) {
-        this.userServiceProps = userServiceProps;
-        this.webClient = webClientbuilder.build();
-    }
+  public UserServiceClient(UserServiceProps userServiceProps, WebClient.Builder webClientbuilder) {
+    this.userServiceProps = userServiceProps;
+    this.webClient = webClientbuilder.build();
+  }
 
-    public Mono<LoginResponse> loginRequest(LoginRequest request){
-        var url = String.format("%s%s", userServiceProps.getBaseUrl(), userServiceProps.getLogin());
-        var res = webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(request).retrieve().bodyToMono(LoginResponse.class)
-                .onErrorResume(WebClientResponseException.class, ex -> {
-                    if(ex.getStatusCode().is4xxClientError()){
-                        return Mono.error(new LoginException("Invalid username or password", ex.getStatusCode().value()));
-                    }else{
-                        return Mono.error(new LoginException("Error occurred while login", ex.getStatusCode().value()));
-                    }
+  public Mono<LoginResponse> loginRequest(LoginRequest request) {
+    var url = String.format("%s%s", userServiceProps.getBaseUrl(), userServiceProps.getLogin());
+    var res =
+        webClient
+            .post()
+            .uri(url)
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(request)
+            .retrieve()
+            .bodyToMono(LoginResponse.class)
+            .onErrorResume(
+                WebClientResponseException.class,
+                ex -> {
+                  if (ex.getStatusCode().is4xxClientError()) {
+                    return Mono.error(
+                        new LoginException(
+                            "Invalid username or password", ex.getStatusCode().value()));
+                  } else {
+                    return Mono.error(
+                        new LoginException(
+                            "Error occurred while login", ex.getStatusCode().value()));
+                  }
                 });
-        return res;
-    }
+    return res;
+  }
 }

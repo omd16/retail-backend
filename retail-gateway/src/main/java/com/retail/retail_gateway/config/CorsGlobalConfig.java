@@ -12,18 +12,20 @@ import java.util.List;
 @Configuration
 public class CorsGlobalConfig {
 
-    @Bean
-    public CorsWebFilter corsWebFilter() {
-        CorsConfiguration config = new CorsConfiguration();
-        
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:5173"); //TODO: move this to properties file, note * and allowcred=true doesn't work well together
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*"); // GET, POST, etc.
+  @Bean
+  public CorsWebFilter corsWebFilter() {
+    CorsConfiguration config = new CorsConfiguration();
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+    config.setAllowCredentials(true);
+    config.addAllowedOrigin(
+        "http://localhost:5173"); // TODO: move this to properties file, note * and allowcred=true
+                                  // doesn't work well together
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*"); // GET, POST, etc.
 
-        return new CorsWebFilter(source);
-    }
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+
+    return new CorsWebFilter(source);
+  }
 }

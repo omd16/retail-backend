@@ -17,47 +17,49 @@ import java.util.Map;
 @RequestMapping("auth")
 public class LoginController {
 
-    private final UserServiceClient userServiceClient;
+  private final UserServiceClient userServiceClient;
 
-    public LoginController(UserServiceClient userServiceClient) {
-        this.userServiceClient = userServiceClient;
-    }
+  public LoginController(UserServiceClient userServiceClient) {
+    this.userServiceClient = userServiceClient;
+  }
 
-    @PostMapping("/login")
-    public Mono<Map<String, String>> login(@RequestBody LoginRequest request,
-                                           ServerHttpResponse response) {
-        return userServiceClient.loginRequest(request)
-                .map(loginResponse -> {
-                    String token = loginResponse.getAccessToken();
+  @PostMapping("/login")
+  public Mono<Map<String, String>> login(
+      @RequestBody LoginRequest request, ServerHttpResponse response) {
+    return userServiceClient
+        .loginRequest(request)
+        .map(
+            loginResponse -> {
+              String token = loginResponse.getAccessToken();
 
-                    ResponseCookie cookie = ResponseCookie.from("accessToken", token)
-                            .httpOnly(true)
-                            .secure(false) // set true in prod with HTTPS
-                            .path("/")
-                            .maxAge(3600)
-                            .sameSite("Strict")
-                            .build();
+              ResponseCookie cookie =
+                  ResponseCookie.from("accessToken", token)
+                      .httpOnly(true)
+                      .secure(false) // set true in prod with HTTPS
+                      .path("/")
+                      .maxAge(3600)
+                      .sameSite("Strict")
+                      .build();
 
-                    response.addCookie(cookie);
+              response.addCookie(cookie);
 
-                    return Map.of(
-                            "message", "Login successful"
-                    );
-                });
-    }
+              return Map.of("message", "Login successful");
+            });
+  }
 
-    @PostMapping("/logout")
-    public Mono<ResponseEntity<Map<String, String>>> logout(ServerHttpResponse response) {
-        ResponseCookie deleteCookie = ResponseCookie.from("accessToken", "")
-                .httpOnly(true)
-                .secure(false)
-                .path("/")
-                .maxAge(Duration.ZERO)
-                .sameSite("Strict")
-                .build();
+  @PostMapping("/logout")
+  public Mono<ResponseEntity<Map<String, String>>> logout(ServerHttpResponse response) {
+    ResponseCookie deleteCookie =
+        ResponseCookie.from("accessToken", "")
+            .httpOnly(true)
+            .secure(false)
+            .path("/")
+            .maxAge(Duration.ZERO)
+            .sameSite("Strict")
+            .build();
 
-        response.addCookie(deleteCookie);
+    response.addCookie(deleteCookie);
 
-        return Mono.just(ResponseEntity.ok(Map.of("message", "Logged out successfully")));
-    }
+    return Mono.just(ResponseEntity.ok(Map.of("message", "Logged out successfully")));
+  }
 }

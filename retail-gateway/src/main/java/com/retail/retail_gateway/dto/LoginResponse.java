@@ -8,6 +8,6 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class LoginResponse {
-    private String accessToken;
-    private String tokenType = "Bearer";
+  private String accessToken;
+  private String tokenType = "Bearer";
 }

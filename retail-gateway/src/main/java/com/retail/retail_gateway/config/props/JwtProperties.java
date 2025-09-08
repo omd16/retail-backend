@@ -13,9 +13,9 @@ import java.util.List;
 @Setter
 @Getter
 public class JwtProperties {
-    private List<PublicPath> publicPaths;
+  private List<PublicPath> publicPaths;
 
-    private String secret;
+  private String secret;
 
-    private Integer expiration;
+  private Integer expiration;
 }

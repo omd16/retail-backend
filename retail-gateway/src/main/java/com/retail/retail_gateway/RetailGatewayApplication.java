@@ -8,8 +8,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @SpringBootApplication
 public class RetailGatewayApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RetailGatewayApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(RetailGatewayApplication.class, args);
+  }
 }

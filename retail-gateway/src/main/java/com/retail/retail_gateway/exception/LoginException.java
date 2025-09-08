@@ -3,12 +3,12 @@ package com.retail.retail_gateway.exception;
 import lombok.Getter;
 
 @Getter
-public class LoginException extends RuntimeException{
+public class LoginException extends RuntimeException {
 
-    private int status;
+  private final int status;
 
-    public LoginException(String message, int status){
-        super(message);
-        this.status = status;
-    }
+  public LoginException(String message, int status) {
+    super(message);
+    this.status = status;
+  }
 }
