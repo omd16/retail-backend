@@ -12,3 +12,4 @@ It is designed to demonstrate **enterprise-level architecture** with modular mic
 - **product-service** – Manages products, categories, pricing, and stock.
 - **user-service** – Handles authentication, profiles, and user management.
 - **retail-gateway** – API Gateway (entry point for all requests, routing to services, autherization and authentication).
+- **docker** – Contains docker compose files for backend service like DB, kafka, elastic search etc.
