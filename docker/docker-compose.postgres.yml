@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-retail-db
+    restart: always
+    environment:
+      POSTGRES_DB: retaildb
+      POSTGRES_USER: retailuser
+      POSTGRES_PASSWORD: retailpass
+    ports:
+      - "5430:5432"
+    volumes:
+      - pgretaildata:/var/lib/postgresql/data
+    networks:
+      - retail-network
+
+volumes:
+  pgretaildata:
+
+networks:
+  retail-network:
